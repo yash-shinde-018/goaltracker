@@ -249,6 +249,8 @@ const LandingPage = ({ onGetStarted, darkMode }) => {
         />
       </div>
 
+
+
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-4 py-20">
         <motion.div

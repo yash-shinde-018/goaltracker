@@ -44,13 +44,13 @@ const TopNavbar = ({
     <motion.nav
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      className="fixed top-0 left-0 right-0 z-50 px-4 py-4"
+      className="fixed top-0 left-0 right-0 z-50 px-2 sm:px-4 py-2 sm:py-4"
     >
       {/* Center the entire navigation group */}
-      <div className="flex justify-center">
-        <div className="flex items-center space-x-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-6 py-3 shadow-lg">
+      <div className="flex justify-center items-center min-h-[50px] sm:min-h-[60px]">
+        <div className="flex items-center space-x-1 sm:space-x-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-2 sm:px-6 py-2 sm:py-3 shadow-lg max-w-fit mx-auto">
           {/* Main Navigation Items */}
-          <div className="flex items-center space-x-1">
+          <div className="flex items-center space-x-0.5 sm:space-x-1 flex-wrap justify-center">
             {navigationItems.map((item) => {
               const Icon = item.icon;
               const isActive = currentPage === item.id;
@@ -60,7 +60,7 @@ const TopNavbar = ({
                   key={item.id}
                   onClick={() => onPageChange(item.id)}
                   className={`
-                    relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300
+                    relative px-1.5 sm:px-3 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 whitespace-nowrap
                     ${isActive 
                       ? 'text-white' 
                       : isDarkMode 
@@ -78,9 +78,10 @@ const TopNavbar = ({
                       transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                     />
                   )}
-                  <span className="relative z-10 flex items-center space-x-2">
-                    {Icon && <Icon size={16} />}
-                    <span>{item.label}</span>
+                  <span className="relative z-10 flex items-center space-x-1 sm:space-x-2">
+                    {Icon && <Icon size={14} className="sm:w-4 sm:h-4" />}
+                    <span className="hidden xs:inline sm:inline">{item.label}</span>
+                    <span className="xs:hidden sm:hidden">{item.label.slice(0, 3)}</span>
                   </span>
                 </motion.button>
               );
@@ -91,7 +92,7 @@ const TopNavbar = ({
           <motion.button
             onClick={toggleDarkMode}
             className={`
-              p-2 rounded-full transition-all duration-300
+              p-1.5 sm:p-2 rounded-full transition-all duration-300
               ${isDarkMode 
                 ? 'bg-yellow-500/20 text-yellow-400 hover:bg-yellow-500/30' 
                 : 'bg-blue-500/20 text-blue-600 hover:bg-blue-500/30'
@@ -105,7 +106,7 @@ const TopNavbar = ({
               animate={{ rotate: isDarkMode ? 0 : 180 }}
               transition={{ duration: 0.3 }}
             >
-              {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+              {isDarkMode ? <Sun size={16} className="sm:w-[18px] sm:h-[18px]" /> : <Moon size={16} className="sm:w-[18px] sm:h-[18px]" />}
             </motion.div>
           </motion.button>
 
@@ -115,7 +116,7 @@ const TopNavbar = ({
               <motion.button
                 onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
                 className={`
-                  p-2 rounded-full transition-all duration-300
+                  p-1.5 sm:p-2 rounded-full transition-all duration-300
                   ${isDarkMode 
                     ? 'bg-gray-700/50 text-gray-300 hover:bg-gray-600/50' 
                     : 'bg-gray-200/50 text-gray-700 hover:bg-gray-300/50'
@@ -124,7 +125,7 @@ const TopNavbar = ({
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
-                <User size={18} />
+                <User size={16} className="sm:w-[18px] sm:h-[18px]" />
               </motion.button>
 
               <AnimatePresence>
